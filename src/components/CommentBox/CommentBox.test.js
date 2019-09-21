@@ -1,5 +1,5 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import { mount } from 'enzyme';
 import CommentBox from 'components/CommentBox/CommentBox'
 
 let wrapped;
@@ -17,6 +17,13 @@ test('Should have a textarea and button', () => {
   expect(wrapped.find('button').length).toEqual(1);
 })
 
-test('', () => {
-
+test('has a textarea that users can type in', () => {
+  const expectedValue = 'New Comment!'
+  wrapped.find('textarea').simulate('change', {
+    target: {
+      value: expectedValue
+    }
+  })
+  wrapped.update()
+  expect(wrapped.find('textarea').prop('value')).toEqual(expectedValue);
 })
